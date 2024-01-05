@@ -1,5 +1,4 @@
 venv/
 __pycache__/
 build/
-dist/
-borsa-pitone.spec
+borsa_pitone.spec
