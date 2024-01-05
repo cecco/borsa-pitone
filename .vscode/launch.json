@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "main:app",
+                "borsa-pitone:app",
                 "--reload"
             ],
             "jinja": true,
