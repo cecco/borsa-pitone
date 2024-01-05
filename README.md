@@ -1,4 +1,5 @@
 # Borsa Pitone
+[![Build artifacts](https://github.com/cecco/borsa-pitone/actions/workflows/build.yml/badge.svg)](https://github.com/cecco/borsa-pitone/actions/workflows/build.yml)
 
 Semplice proxy HTTP per l'applicazione Portfolio Performance, permette di ricevere l'ultima quotazione disponibile su borsa-italiana.it di alcuni strumenti (per adesso è limitato agli strumenti Euro-TLX). 
 Come chiave di ricerca è utilizzato ISIN. 
