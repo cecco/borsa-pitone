@@ -8,7 +8,7 @@
             "label": "build",
             "type": "shell",
             "command": "venv\\Scripts\\pyinstaller.exe",
-            "args": ["borsa-pitone.py", "--onefile", "-y", "--name",  "borsa-pitone", "-i", "images/icona.ico"],
+            "args": ["borsa_pitone.py", "--onefile", "-y", "--name",  "borsa_pitone", "-i", "images/icona.ico"],
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
