@@ -1,0 +1,15 @@
+{
+    "cSpell.language": "en,it,it-IT",
+    "cSpell.words": [
+        "eurotlx",
+        "isin"
+    ],
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "${workspaceFolder:borsa-pitone}/.cspell/custom-dictionary-workspace.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    }
+}
