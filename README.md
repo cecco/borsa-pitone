@@ -8,6 +8,8 @@ Restituisce un JSON nel formato utilizzato dall'applicazione.
 
 Questo software viene fornito senza alcun garanzia di funzionamento nè altre responsabilità di qualsiasi sorta: usare a proprio rischio e pericolo.
 
+Esiste una versine già compilata in .exe nella cartella *dist*
+
 ## Setup
 
 1. Lanciare l'applicazione **borsa-pitone** *prima* di eseguire Portfolio Performance. 
