@@ -1,3 +1,4 @@
+"""Borsa Pitone"""
 # Borsa Pitone
 # Simple localhost proxy for Portfolio Performance to access borsaitaliana.it
 # securities quotes.
@@ -5,11 +6,12 @@
 #
 # (C) 2024 by Francesco Usseglio Gaudi
 
+import datetime
 import uvicorn
 from fastapi import FastAPI, Response
 import requests
 from lxml.html import fromstring
-import datetime
+
 
 # http://localhost:8000/borsaitaliana/eurotlx/{ISIN}
 # $.data[*].date
@@ -21,26 +23,41 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
+    """radice
+
+    Returns:
+        _type_: _description_
+    """
     return {"Borsa": "Pitone"}
 
 
 @app.get("/borsaitaliana/eurotlx/{isin}", status_code=200)
 def borsaitaliana(isin: str, response: Response):
+    """accede a borsaitaliana eurotlx per isin come argomento
+
+    Args:
+        isin (str): isin dello strumento da cercare
+        response (Response): per gestire eventuali errori
+
+    Returns:
+        _type_: json in formato PP
+    """
     if isin == "null":
-        print("ERROR: ISIN '{0}' è appunto null".format(isin))
+        print(f"ERROR: ISIN '{isin}' è appunto null")
         response.status_code = 500
         return {"isin": isin, "data": "error, isin è null"}
 
     r = requests.get(
-        "https://www.borsaitaliana.it/borsa/cw-e-certificates/eurotlx/scheda/{isin}.html?lang=it".format(isin=isin))
+        f"https://www.borsaitaliana.it/borsa/cw-e-certificates/eurotlx/scheda/{isin}.html?lang=it",
+        timeout=10)
 
-    print("Status: {} and reason: {}".format(r.status_code, r.reason))
+    print(f"Status: {r.status_code} and reason: {r.reason}")
 
     if r.status_code != 200:
         print("ERROR: il server remoto ha dei problemi?")
         print("provare ad aprire in un browser:")
         print(
-            "https://www.borsaitaliana.it/borsa/cw-e-certificates/eurotlx/scheda/{isin}.html?lang=it".format(isin=isin))
+            f"https://www.borsaitaliana.it/borsa/cw-e-certificates/eurotlx/scheda/{isin}.html?lang=it")
         response.status_code = 500
         return {"isin": isin, "data": "remote server error", "error": r.reason}
 
@@ -56,7 +73,7 @@ def borsaitaliana(isin: str, response: Response):
               "oppure il formato pagina è cambiato e allora va modificato questo software")
         print("provare ad aprire in un browser:")
         print(
-            "https://www.borsaitaliana.it/borsa/cw-e-certificates/eurotlx/scheda/{isin}.html?lang=it".format(isin=isin))
+            f"https://www.borsaitaliana.it/borsa/cw-e-certificates/eurotlx/scheda/{isin}.html?lang=it")
         response.status_code = 404
         return {
             "isin": isin,
@@ -65,8 +82,7 @@ def borsaitaliana(isin: str, response: Response):
             "oppure il formato pagina è cambiato e allora va modificato questo software"
         }
 
-    print("{0}: price: {1} - date: {2}".format(datetime.datetime.now(),
-          price, datenew.date()))
+    print(f"{datetime.datetime.now()}: price: {price} - date: {datenew.date()}")
 
     return {"isin": isin,
             "totalCount": 1,
