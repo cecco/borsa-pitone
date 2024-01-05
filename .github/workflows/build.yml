@@ -1,3 +1,5 @@
+name: Build artifacts
+
 on:
   push:
 
@@ -20,4 +22,5 @@ jobs:
     
     - uses: actions/upload-artifact@v4
       with:
+        name: borsa_pitone
         path: dist/*
